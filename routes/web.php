@@ -37,6 +37,10 @@ Route::middleware('auth')->group(function () {
 
         Route::resource('loans', LoanController::class);
 
+    // Admin: user approvals
+    Route::get('/admin/users/pending', [\App\Http\Controllers\Admin\UserApprovalController::class, 'index'])->name('admin.users.index');
+    Route::post('/admin/users/{id}/approve', [\App\Http\Controllers\Admin\UserApprovalController::class, 'approve'])->name('admin.users.approve');
+
     });
 });
 

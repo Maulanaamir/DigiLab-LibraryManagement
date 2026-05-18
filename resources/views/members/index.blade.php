@@ -26,6 +26,7 @@
                             <tr>
                                 <th class="px-6 py-4">Nama Lengkap</th>
                                 <th class="px-6 py-4">Email / Kontak</th>
+                                <th class="px-6 py-4 text-center">Status</th>
                                 <th class="px-6 py-4 text-center w-32">Aksi</th>
                             </tr>
                         </thead>
@@ -41,6 +42,13 @@
                                     </div>
                                 </td>
                                 <td class="px-6 py-4 text-gray-500">{{ $member->email }}</td>
+                                <td class="px-6 py-4 text-center">
+                                    @if(property_exists($member, 'is_approved') && $member->is_approved)
+                                        <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#ebfaef] text-[#00a870] text-xs font-semibold border border-[#b2e8cf]">Terverifikasi</span>
+                                    @else
+                                        <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#fff7ed] text-[#ea580c] text-xs font-semibold border border-[#ffedd5]">Menunggu</span>
+                                    @endif
+                                </td>
                                 <td class="px-6 py-4 flex justify-center gap-2">
                                     <a href="{{ route('members.edit', $member->id) }}" class="p-2 text-[#900b21] hover:bg-[#fce8eb] rounded-lg transition-colors" title="Edit Anggota">
                                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>

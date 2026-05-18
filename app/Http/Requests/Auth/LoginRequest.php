@@ -49,6 +49,19 @@ class LoginRequest extends FormRequest
             ]);
         }
 
+        // After successful attempt, ensure the account is approved by admin
+        $user = Auth::user();
+        if ($user && property_exists($user, 'is_approved') && ! $user->is_approved) {
+            // logout the user we just authenticated
+            Auth::logout();
+
+            RateLimiter::hit($this->throttleKey());
+
+            throw ValidationException::withMessages([
+                'email' => 'Akun Anda belum diaktifkan oleh admin. Silakan tunggu verifikasi.',
+            ]);
+        }
+
         RateLimiter::clear($this->throttleKey());
     }
 

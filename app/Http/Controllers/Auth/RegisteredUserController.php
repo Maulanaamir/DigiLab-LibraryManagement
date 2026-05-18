@@ -39,12 +39,13 @@ class RegisteredUserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            // new users must be approved by admin before they can login
+            'is_approved' => false,
         ]);
 
         event(new Registered($user));
 
-        Auth::login($user);
-
-        return redirect('/');
+        // Do NOT auto-login. Inform the user to wait for admin verification.
+        return redirect()->route('login')->with('status', 'Akun berhasil dibuat. Silakan tunggu verifikasi/aktivasi dari admin sebelum login.');
     }
 }

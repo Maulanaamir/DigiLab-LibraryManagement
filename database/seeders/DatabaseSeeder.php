@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@perpus.com',
             'password' => bcrypt('password'),
             'role' => 'admin',
+            'is_approved' => true,
         ]);
 
         User::create([

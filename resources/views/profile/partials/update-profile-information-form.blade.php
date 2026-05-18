@@ -9,6 +9,23 @@
         </p>
     </header>
 
+    {{-- Approval status badge --}}
+    @if(isset($user) && property_exists($user, 'is_approved'))
+    <div class="mt-4">
+        @if($user->is_approved)
+            <div class="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-[#ebfaef] border border-[#b2e8cf] text-[#00a870] text-sm font-semibold">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                Terverifikasi oleh admin
+            </div>
+        @else
+            <div class="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-[#fff7ed] border border-[#ffedd5] text-[#ea580c] text-sm font-semibold">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3"></path></svg>
+                Menunggu aktivasi admin
+            </div>
+        @endif
+    </div>
+    @endif
+
     <form id="send-verification" method="post" action="{{ route('verification.send') }}">
         @csrf
     </form>

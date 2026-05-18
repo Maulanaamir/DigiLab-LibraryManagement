@@ -23,7 +23,21 @@
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
-                            <div>{{ Auth::user()->name }}</div>
+                            <div class="flex items-center gap-2">
+                                <span>{{ Auth::user()->name }}</span>
+
+                                @if(property_exists(Auth::user(), 'is_approved') && Auth::user()->is_approved)
+                                    <span class="inline-flex items-center gap-2 px-2 py-0.5 rounded-full bg-[#ebfaef] text-[#00a870] text-xs font-semibold border border-[#b2e8cf]">
+                                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                        Terverifikasi
+                                    </span>
+                                @else
+                                    <span class="inline-flex items-center gap-2 px-2 py-0.5 rounded-full bg-[#fff7ed] text-[#ea580c] text-xs font-semibold border border-[#ffedd5]">
+                                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3"></path></svg>
+                                        Menunggu
+                                    </span>
+                                @endif
+                            </div>
 
                             <div class="ms-1">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -77,6 +91,15 @@
             <div class="px-4">
                 <div class="font-medium text-base text-gray-800 dark:text-gray-200">{{ Auth::user()->name }}</div>
                 <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
+                @if(property_exists(Auth::user(), 'is_approved'))
+                    <div class="mt-2">
+                        @if(Auth::user()->is_approved)
+                            <span class="inline-flex items-center gap-2 px-2 py-0.5 rounded-full bg-[#ebfaef] text-[#00a870] text-xs font-semibold border border-[#b2e8cf]">Terverifikasi oleh admin</span>
+                        @else
+                            <span class="inline-flex items-center gap-2 px-2 py-0.5 rounded-full bg-[#fff7ed] text-[#ea580c] text-xs font-semibold border border-[#ffedd5]">Menunggu aktivasi</span>
+                        @endif
+                    </div>
+                @endif
             </div>
 
             <div class="mt-3 space-y-1">
