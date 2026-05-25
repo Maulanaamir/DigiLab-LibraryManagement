@@ -53,7 +53,7 @@
             
             <tbody class="divide-y divide-gray-100 text-gray-900 font-medium">
                 @forelse($book as $index => $item)
-                <tr class="hover:bg-gray-50/50 transition-colors">DigiLab
+                <tr class="hover:bg-gray-50/50 transition-colors">
                     <td class="px-6 py-4 text-gray-500">{{ $book->firstItem() + $index }}</td>
                     <td class="px-6 py-4">
                         <p class="font-bold text-gray-900">{{ $item->title }}</p>
