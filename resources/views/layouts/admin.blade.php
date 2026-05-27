@@ -63,7 +63,7 @@
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 10-8 0v4M5 21h14"></path>
                     </svg>
-                    Persetujuan Pengguna
+                    User Consent Management
                 </a>
                 <a href="{{ route('loans.index') }}"
                     class="flex items-center gap-3 px-4 py-3 text-[#900b21] hover:bg-[#fce8eb] rounded-xl font-medium transition-colors">
